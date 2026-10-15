@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5">
+<meta name="theme-color" content="#0f8b8d">
+<title>Ipak yo'li – Samarqand, Buxoro, Xiva (Mukammal Versiya)</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,700&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f2e8;--ink:#12304f;--mute:#5b6b7c;--card:#fffdf7;--line:#e3dcc9;
+  --teal:#0f8b8d;--gold:#d9a441;--on:#fff;
+  --shadow:0 10px 40px rgba(18,48,79,.12);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#0d1b2b;--ink:#f1ead8;--mute:#9fb0c1;--card:#13273b;--line:#27405a;--teal:#3cc0c2;--gold:#e8b857;--shadow:0 10px 40px rgba(0,0,0,.4)}
+}
+:root[data-theme="dark"]{--bg:#0d1b2b;--ink:#f1ead8;--mute:#9fb0c1;--card:#13273b;--line:#27405a;--teal:#3cc0c2;--gold:#e8b857;--shadow:0 10px 40px rgba(0,0,0,.4)}
+html{scroll-padding-top:70px;scroll-behavior:smooth}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 Manrope,system-ui,sans-serif;overflow-x:hidden;min-height:100vh}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;margin:0;line-height:1.05}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+img,svg{max-width:100%;display:block}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+@media (min-width:768px){ .wrap{ padding:0 24px; } }
+
+#pg{position:fixed;top:0;left:0;height:3px;width:0;z-index:20;background:linear-gradient(90deg,var(--teal),var(--gold));transition:width .1s}
+
+/* ===== HEADER ===== */
+.top{position:sticky;top:0;z-index:15;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:8px;height:56px}
+@media (min-width:768px){ .top .wrap{ height:64px; gap:12px; } }
+.brand{font:700 22px "Cormorant Garamond",serif;white-space:nowrap;background:none;border:0;padding:0;transition:.3s;color:inherit;flex-shrink:0}
+@media (min-width:768px){ .brand{ font-size:26px; margin-right:auto; } }
+.brand:hover{color:var(--gold);letter-spacing:.02em}
+.burger{display:grid;place-items:center;width:38px;height:38px;border:1px solid var(--line);border-radius:12px;background:var(--card);margin-left:auto}
+@media (min-width:768px){ .burger{ display:none; } }
+.burger span{display:block;width:18px;height:2px;background:var(--ink);position:relative;transition:.3s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:18px;height:2px;background:var(--ink);transition:.3s}
+.burger span::before{top:-6px}
+.burger span::after{top:6px}
+.burger.on span{background:transparent}
+.burger.on span::before{top:0;transform:rotate(45deg)}
+.burger.on span::after{top:0;transform:rotate(-45deg)}
+.nav{display:none}
+@media (min-width:768px){ .nav{ display:flex; gap:14px; font-size:14px; font-weight:600; flex-wrap:wrap; } }
+.nav a{color:inherit;text-decoration:none;opacity:.7;transition:.2s;position:relative;padding:6px 0;background:none;border:0;cursor:pointer}
+.nav a::after{content:"";position:absolute;left:0;bottom:2px;width:0;height:2px;background:var(--gold);transition:width .3s}
+.nav a:hover{opacity:1;color:var(--teal)}
+.nav a:hover::after,.nav a.active::after{width:100%}
+.nav a.active{opacity:1;color:var(--teal)}
+.nav-mobile{position:fixed;top:56px;left:0;right:0;bottom:0;background:var(--bg);z-index:14;padding:20px;display:none;flex-direction:column;gap:6px;overflow-y:auto}
+.nav-mobile.on{display:flex;animation:fadeUp .3s both}
+.nav-mobile a{display:block;padding:14px 16px;border-radius:14px;background:var(--card);border:1px solid var(--line);text-decoration:none;color:inherit;font-weight:600;font-size:16px;transition:.2s;cursor:pointer}
+.nav-mobile a:hover,.nav-mobile a.active{background:var(--teal);color:#fff;border-color:var(--teal)}
+.lang{display:none;border:1px solid var(--line);border-radius:99px;overflow:hidden;flex-shrink:0}
+@media (min-width:768px){ .lang{ display:flex; } }
+.nav-mobile .lang{display:flex;margin-top:16px;align-self:flex-start}
+.lang button{border:0;background:none;padding:6px 10px;font-size:13px;font-weight:700;cursor:pointer}
+.lang button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+#th{border:1px solid var(--line);border-radius:99px;width:34px;height:34px;padding:0;transition:.3s;background:var(--card);flex-shrink:0;cursor:pointer}
+#th:hover{transform:rotate(180deg)}
+
+/* ===== HERO ===== */
+.hero{position:relative;padding:40px 16px 20px;text-align:center}
+@media (min-width:768px){ .hero{ padding:60px 20px 30px; } }
+.orn{position:absolute;width:min(560px,120vw);left:50%;top:0;margin-left:calc(min(560px,120vw)/-2);color:var(--gold);opacity:.18;animation:spin 90s linear infinite;z-index:-1;pointer-events:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero h1{font-size:clamp(38px,10vw,96px);font-weight:700;max-width:14ch;margin:0 auto 10px}
+.type{color:var(--gold);font:italic 700 clamp(22px,5vw,42px) "Cormorant Garamond",serif;min-height:1.4em}
+.hero p{max-width:54ch;margin:6px auto 22px;color:var(--mute);font-size:16px}
+@media (min-width:768px){ .hero p{ font-size:18px; } }
+.stats{display:flex;justify-content:center;gap:clamp(14px,5vw,56px);margin:0 0 30px;flex-wrap:wrap}
+.stats b{font:700 clamp(30px,7vw,54px) "Cormorant Garamond",serif;display:block;color:var(--teal);line-height:1}
+.stats span{font-size:12px;color:var(--mute)}
+
+/* ===== ARCHES ===== */
+.arches{display:grid;grid-template-columns:1fr;gap:14px;align-items:end;max-width:880px;margin:0 auto}
+@media (min-width:560px){ .arches{ grid-template-columns:repeat(3,1fr); gap:clamp(10px,3vw,28px); } }
+.arch{border:0;color:#fff;text-align:center;padding:clamp(60px,14vw,150px) 12px 20px;border-radius:999px 999px 14px 14px;position:relative;overflow:hidden;background:linear-gradient(170deg,var(--a),var(--b));box-shadow:0 0 0 4px var(--bg),0 0 0 6px var(--gold);transition:transform .3s,filter .3s;filter:saturate(.7) brightness(.9);cursor:pointer}
+.arch:hover{filter:none;transform:translateY(-8px)}
+.arch span{position:relative;display:block}
+.arch .n{font:700 clamp(20px,4vw,34px) "Cormorant Garamond",serif}
+.arch .t{font-size:12px;opacity:.9;margin-top:4px}
+
+/* ===== MARQUEE ===== */
+.mq{overflow:hidden;background:var(--ink);color:var(--gold);padding:10px 0;margin:30px 0 10px;transform:rotate(-1.2deg);width:104%;margin-left:-2%}
+.mqi{display:flex;width:max-content;animation:mq 32s linear infinite}
+.mqi span{font:italic 700 22px "Cormorant Garamond",serif;padding:0 16px;white-space:nowrap}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ===== SECTIONS ===== */
+.sec{padding:40px 0 10px}
+@media (min-width:768px){ .sec{ padding:64px 0 10px; } }
+.sec h2{font-size:clamp(28px,7vw,58px)}
+.lead{color:var(--mute);max-width:60ch;margin:10px 0 20px;font-size:15px}
+
+/* ===== PAGES ===== */
+.page{display:none}
+.page.active{display:block;animation:fadeUp .4s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
+
+/* ===== MAP ===== */
+.svg-map-wrap{position:relative;width:100%;background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow);padding:20px 10px}
+.svg-map{width:100%;height:auto;display:block;max-height:520px}
+.svg-map .landmass{fill:color-mix(in srgb,var(--teal) 12%,transparent);stroke:var(--teal);stroke-width:2.5}
+.svg-map .silk-road{fill:none;stroke:var(--gold);stroke-width:4;stroke-dasharray:10 8;stroke-linecap:round}
+.svg-map .city-dot{fill:var(--teal);stroke:#fff;stroke-width:3;cursor:pointer;transition:.3s}
+.svg-map .city-dot:hover{fill:var(--gold);r:14}
+.svg-map .city-label{font:700 16px "Cormorant Garamond",serif;fill:var(--ink);text-anchor:middle;pointer-events:none}
+.map-controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:99px;padding:7px 14px;font-weight:600;font-size:13px;transition:.2s;color:inherit;cursor:pointer}
+.chip:hover{border-color:var(--teal);transform:translateY(-2px)}
+.chip[aria-pressed=true]{background:var(--teal);border-color:var(--teal);color:var(--on)}
+
+/* ===== BAR ===== */
+.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.bar input[type=search]{flex:1;min-width:150px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;padding:10px 18px;font:inherit;font-size:15px;-webkit-appearance:none}
+.bar input[type=search]:focus{border-color:var(--teal);outline:none}
+
+/* ===== GRID / CARDS ===== */
+.grid{display:grid;grid-template-columns:1fr;gap:14px}
+@media (min-width:480px){ .grid{ grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; } }
+.card{background:var(--card);border:1px solid var(--line);border-radius:6px 6px 22px 6px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform .15s,box-shadow .3s}
+.card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(18,48,79,.2)}
+.art{height:120px;display:grid;place-items:center;font-size:46px;background:linear-gradient(135deg,var(--a),var(--b));position:relative}
+.art em{position:absolute;left:10px;bottom:8px;font:600 11px Manrope,sans-serif;font-style:normal;background:rgba(0,0,0,.4);color:#fff;padding:2px 10px;border-radius:99px}
+.card .b{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card h3{font-size:24px}
+.card p{margin:0;color:var(--mute);font-size:13.5px;flex:1}
+
+/* ===== CLIMATE CHART ===== */
+.cl{display:flex;align-items:flex-end;gap:6px;height:220px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;overflow-x:auto}
+.cb{flex:1;min-width:24px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;font-size:11px;gap:4px}
+.cb i{display:block;width:100%;max-width:32px;border-radius:8px 8px 3px 3px;height:calc(var(--t)/42 * 80%);background:hsl(calc(200 - var(--t)*4), 70%, 48%)}
+.cb.best i{box-shadow:0 0 0 3px var(--gold)}
+
+/* ===== PLANNER ===== */
+.pn{display:grid;grid-template-columns:1fr;gap:16px}
+@media (min-width:768px){ .pn{ grid-template-columns:1fr 1fr; } }
+.ctl{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px}
+.ctl input[type=range]{width:100%;accent-color:var(--teal);margin:10px 0;cursor:pointer}
+.sty{display:flex;gap:8px;margin:12px 0;flex-wrap:wrap}
+.cost{font:700 38px "Cormorant Garamond",serif;color:var(--teal);margin:10px 0}
+.days{display:grid;gap:10px;margin-top:16px}
+.day{background:var(--ink);color:var(--bg);border-radius:16px;padding:14px 16px}
+.day h3{color:var(--gold);font-size:22px;margin-bottom:4px}
+.day div{font-size:14px;opacity:.9}
+
+/* ===== QUIZ ===== */
+.qz{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px;text-align:center;max-width:600px;margin:0 auto}
+.qo{display:grid;gap:10px;margin-top:16px}
+.qo button{border:1px solid var(--line);background:var(--bg);border-radius:14px;padding:14px;font-weight:600;transition:.2s;font-size:14px;color:inherit;text-align:left;cursor:pointer}
+.qo button:hover{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 10%,var(--bg))}
+
+/* ===== WORDS ===== */
+.ph{display:grid;grid-template-columns:1fr;gap:12px}
+@media (min-width:480px){ .ph{ grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); } }
+.wd{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:16px;text-align:left;transition:.25s;position:relative;color:inherit;cursor:pointer}
+.wd:hover{transform:translateY(-3px);border-color:var(--teal)}
+.wd b{font:700 22px "Cormorant Garamond",serif;display:block}
+.wd small{color:var(--mute);font-size:13px}
+.wd::after{content:"🔊";position:absolute;right:16px;top:16px;font-size:16px}
+
+/* ===== CHAT WIDGET ===== */
+.fab{position:fixed;right:16px;bottom:24px;z-index:30;border:0;border-radius:99px;padding:14px 20px;background:linear-gradient(135deg,var(--teal),#12304f);color:#fff;font-weight:800;box-shadow:0 8px 28px rgba(0,0,0,.35);font-size:15px;display:flex;align-items:center;gap:8px;cursor:pointer;transition:.3s}
+.fab:hover{transform:translateY(-3px)}
+.chat{position:fixed;right:16px;bottom:84px;width:min(380px,calc(100vw - 32px));height:500px;z-index:31;background:var(--card);border:1px solid var(--line);border-radius:22px;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.3);overflow:hidden}
+.chat[hidden]{display:none}
+.chat header{background:linear-gradient(135deg,var(--teal),#12304f);color:#fff;padding:14px 16px;font-weight:800;display:flex;justify-content:space-between;align-items:center}
+.chat header button{background:none;border:0;color:#fff;font-size:20px;cursor:pointer}
+.ms{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
+.m{max-width:85%;padding:10px 14px;border-radius:14px;font-size:14px;line-height:1.5;word-break:break-word}
+.m.u{align-self:flex-end;background:var(--teal);color:#fff;border-bottom-right-radius:2px}
+.m.a{align-self:flex-start;background:var(--bg);border:1px solid var(--line);border-bottom-left-radius:2px}
+.sg{display:flex;gap:6px;overflow-x:auto;padding:0 14px 10px;scrollbar-width:none}
+.sg button{flex:none;border:1px solid var(--line);background:var(--bg);border-radius:99px;padding:6px 12px;font-size:12px;color:inherit;white-space:nowrap;cursor:pointer}
+.in2{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line);background:var(--card)}
+.in2 input{flex:1;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:99px;padding:10px 16px;font:inherit;font-size:14px}
+.in2 input:focus{outline:none;border-color:var(--teal)}
+.in2 button{background:var(--teal);color:#fff;border:0;border-radius:50%;width:40px;height:40px;display:grid;place-items:center;cursor:pointer}
+
+/* ===== DIALOG ===== */
+dialog{border:0;border-radius:24px;padding:0;width:min(500px,92vw);background:var(--card);color:var(--ink);overflow:hidden;box-shadow:0 25px 50px rgba(0,0,0,0.3)}
+dialog::backdrop{background:rgba(5,15,28,.6);backdrop-filter:blur(4px)}
+.mh{height:150px;display:grid;place-items:center;font-size:72px;background:linear-gradient(135deg,var(--a),var(--b))}
+.mb{padding:20px 24px}
+.mb h3{font-size:32px;margin-bottom:8px}
+.mb p{color:var(--mute);font-size:15px;line-height:1.6}
+
+/* ===== TOAST ===== */
+#ts{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 20px;border-radius:99px;z-index:50;opacity:0;transition:.3s;pointer-events:none;font-size:14px;box-shadow:0 5px 20px rgba(0,0,0,0.2)}
+#ts.on{opacity:1}
+
+footer{text-align:center;color:var(--mute);font-size:13px;padding:40px 16px 80px}
+</style>
+</head>
+<body>
+<div id="pg"></div>
+
+<!-- HEADER -->
+<header class="top">
+  <div class="wrap">
+    <button class="brand" data-nav="home">Ipak yo'li</button>
+    <nav class="nav">
+      <a data-nav="home" class="active">Bosh sahifa</a>
+      <a data-nav="map">Xarita</a>
+      <a data-nav="places">Joylar</a>
+      <a data-nav="climate">Iqlim</a>
+      <a data-nav="plan">Reja</a>
+      <a data-nav="quiz">Test</a>
+      <a data-nav="words">So'zlar</a>
+    </nav>
+    <div class="lang" id="lang">
+      <button data-l="uz" aria-pressed="true">UZ</button>
+      <button data-l="ru">RU</button>
+      <button data-l="en">EN</button>
+    </div>
+    <button id="th" aria-label="Theme">◐</button>
+    <button class="burger" id="burger" aria-label="Menu"><span></span></button>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<nav class="nav-mobile" id="nav-mobile">
+  <a data-nav="home" class="active">Bosh sahifa</a>
+  <a data-nav="map">Xarita</a>
+  <a data-nav="places">Joylar</a>
+  <a data-nav="climate">Iqlim</a>
+  <a data-nav="plan">Reja</a>
+  <a data-nav="quiz">Test</a>
+  <a data-nav="words">So'zlar</a>
+  <div class="lang" id="lang-mob">
+    <button data-l="uz" aria-pressed="true">UZ</button>
+    <button data-l="ru">RU</button>
+    <button data-l="en">EN</button>
+  </div>
+</nav>
+
+<main>
+  <!-- HOME -->
+  <section class="page active" id="page-home">
+    <div class="hero wrap">
+      <svg class="orn" viewBox="0 0 100 100">
+        <g fill="none" stroke="currentColor" stroke-width=".35">
+          <rect x="20" y="20" width="60" height="60"/>
+          <rect x="20" y="20" width="60" height="60" transform="rotate(45 50 50)"/>
+          <circle cx="50" cy="50" r="38"/>
+        </g>
+      </svg>
+      <h1>Buyuk Ipak Yo'li Merosi</h1>
+      <div class="type" id="ty">Samarqand, Buxoro va Xiva gavhari</div>
+      <p>Registon gumbazlaridan Xiva devorlarigacha: shaharni tanlang, xaritadan yuring, shaxsiy reja tuzing va AI gid bilan istalgan vaqtda suhbatlashing.</p>
+      <div class="stats">
+        <div><b>2750+</b><span>yil tarix</span></div>
+        <div><b>3</b><span>buyuk shahar</span></div>
+        <div><b>12</b><span>asariy obida</span></div>
+      </div>
+      <div class="arches" id="arches">
+        <div class="arch" style="--a:#12304f;--b:#0f8b8d" onclick="navTo('places')">
+          <span>
+            <span class="n">Samarqand</span>
+            <span class="t">Registon va Shohi Zinda</span>
+          </span>
+        </div>
+        <div class="arch" style="--a:#d9a441;--b:#b85d19" onclick="navTo('places')">
+          <span>
+            <span class="n">Buxoro</span>
+            <span class="t">Minorai Kalon va Labi Hovuz</span>
+          </span>
+        </div>
+        <div class="arch" style="--a:#0f8b8d;--b:#12304f" onclick="navTo('places')">
+          <span>
+            <span class="n">Xiva</span>
+            <span class="t">Ichan Qal'a va Kalta Minor</span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="mq"><div class="mqi"><span>✦ Samarqand ✦ Buxoro ✦ Xiva ✦ Qadimiy Karvon Yo'li ✦ Registon ✦ Ichan Qal'a ✦ Minorai Kalon ✦</span><span>✦ Samarqand ✦ Buxoro ✦ Xiva ✦ Qadimiy Karvon Yo'li ✦ Registon ✦ Ichan Qal'a ✦ Minorai Kalon ✦</span></div></div>
+  </section>
+
+  <!-- MAP -->
+  <section class="page" id="page-map">
+    <div class="wrap sec">
+      <h2>Karvon yo'li va Shaharlar</h2>
+      <p class="lead">Shaharlarni tanlang va xarita bo'ylab sayohat qiling.</p>
+      <div class="map-controls" id="map-controls">
+        <button class="chip" aria-pressed="true" data-city="all">Hammasi</button>
+        <button class="chip" data-city="xiv">Xiva</button>
+        <button class="chip" data-city="bux">Buxoro</button>
+        <button class="chip" data-city="sam">Samarqand</button>
+      </div>
+      <div class="svg-map-wrap">
+        <svg class="svg-map" viewBox="0 0 700 420">
+          <path class="landmass" d="M80 180 Q100 130 170 120 L260 100 Q320 80 380 95 L480 90 Q550 100 590 130 L620 180 Q640 230 620 280 L570 340 Q490 380 400 385 L290 380 Q200 370 140 340 L90 290 Q60 240 80 180 Z"/>
+          <path class="silk-road" d="M150 280 Q200 250 280 245 T420 210 T570 175"/>
+          <text x="150" y="275" font-size="24" text-anchor="middle">🐪</text>
+          
+          <g onclick="showCityModal('Xiva', 'Xiva — ming yillik tarixga ega ochiq osmon ostidagi muzey. Ichan Qal’a va Kalta Minor shaharning yuragi hisoblanadi.')" style="cursor:pointer">
+            <circle class="city-dot" cx="150" cy="280" r="10"/>
+            <text class="city-label" x="150" y="308">Xiva</text>
+          </g>
+          <g onclick="showCityModal('Buxoro', 'Buxoro — sharqning ilm va madaniyat markazi. Minorai Kalon va qadimiy karvonsaroylarga boy.')" style="cursor:pointer">
+            <circle class="city-dot" cx="280" cy="245" r="10"/>
+            <text class="city-label" x="280" y="273">Buxoro</text>
+          </g>
+          <g onclick="showCityModal('Samarqand', 'Samarqand — Amir Temur saltanatining poytaxti, Registon maydoni va ko‘k gumbazlar shahri.')" style="cursor:pointer">
+            <circle class="city-dot" cx="420" cy="210" r="10"/>
+            <text class="city-label" x="420" y="188">Samarqand</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLACES -->
+  <section class="page" id="page-places">
+    <div class="wrap sec">
+      <h2>Tarixiy Obidalar</h2>
+      <p class="lead">O'zbekistonning eng mashhur diqqatga sazovor joylari.</p>
+      <div class="bar">
+        <input type="search" id="search-place" placeholder="Obida nomini izlash..." oninput="filterPlaces()">
+      </div>
+      <div class="grid" id="places-grid"></div>
+    </div>
+  </section>
+
+  <!-- CLIMATE -->
+  <section class="page" id="page-climate">
+    <div class="wrap sec">
+      <h2>Ob-havo va Iqlim</h2>
+      <p class="lead">Oylik o'rtacha harorat ko'rsatkichlari (°C).</p>
+      <div class="cl" id="climate-chart"></div>
+    </div>
+  </section>
+
+  <!-- PLANNER -->
+  <section class="page" id="page-plan">
+    <div class="wrap sec">
+      <h2>Sayohat Rejasi va Byudjet</h2>
+      <p class="lead">Kunlar sonini tanlang va o'zingizga qulay reja tuzing.</p>
+      <div class="pn">
+        <div class="ctl">
+          <label>Kunlar soni: <b id="days-val">5</b> kun</label>
+          <input type="range" min="3" max="14" value="5" id="days-range" oninput="updatePlan()">
+          <div class="sty">
+            <button class="chip" aria-pressed="true" onclick="setSty('standart', this)">Standart</button>
+            <button class="chip" onclick="setSty('lux', this)">Komfort (Lux)</button>
+          </div>
+          <div class="cost" id="total-cost">$450</div>
+          <span style="font-size:13px;color:var(--mute)">Taxminiy umumiy xarajat (mehmonxona, ovqat va gid bilan)</span>
+        </div>
+        <div>
+          <div class="days" id="plan-days"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="page" id="page-quiz">
+    <div class="wrap sec">
+      <div class="qz">
+        <h3 id="quiz-title">Ipak yo'li bilimlar testi</h3>
+        <p id="quiz-q" class="lead" style="margin:10px auto">Savol yuklanmoqda...</p>
+        <div class="qo" id="quiz-opts"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORDS -->
+  <section class="page" id="page-words">
+    <div class="wrap sec">
+      <h2>Foydali So'zlar va Iboralar</h2>
+      <p class="lead">Ovozli talaffuz uchun so'zni bosing.</p>
+      <div class="ph" id="words-grid"></div>
+    </div>
+  </section>
+</main>
+
+<!-- CHAT WIDGET -->
+<button class="fab" onclick="toggleChat()">💬 AI Gid bilan Suhbat</button>
+<div class="chat" id="chat-box" hidden>
+  <header>
+    <span>Ipak Yo'li AI Gidi</span>
+    <button onclick="toggleChat()">×</button>
+  </header>
+  <div class="ms" id="chat-msgs">
+    <div class="m a">Salom! Men Ipak yo'li bo'yicha virtual gidman. Samarqand, Buxoro, Xiva, diqqatga sazovor joylar yoki sayohat rejalari haqida istalgan savolingizni bering!</div>
+  </div>
+  <div class="sg">
+    <button onclick="sendQuick('Registon haqida gapirib ber')">Registon</button>
+    <button onclick="sendQuick('Eng yaxshi vaqt qachon?')">Qachon borish kerak?</button>
+    <button onclick="sendQuick('Milliy taomlar qaysilar?')">Milliy taomlar</button>
+  </div>
+  <div class="in2">
+    <input type="text" id="chat-input" placeholder="Savol yozing..." onkeypress="if(event.key==='Enter')sendChat()">
+    <button onclick="sendChat()">➔</button>
+  </div>
+</div>
+
+<!-- MODAL -->
+<dialog id="modal">
+  <div class="mh" id="m-img" style="--a:#0f8b8d;--b:#12304f">🏛️</div>
+  <div class="mb">
+    <h3 id="m-title">Sarlavha</h3>
+    <p id="m-desc">Tavsif</p>
+    <button class="chip" style="margin-top:16px;background:var(--teal);color:#fff" onclick="document.getElementById('modal').close()">Yopish</button>
+  </div>
+</dialog>
+
+<div id="ts">Xabar nusxalandi</div>
+
+<footer>
+  <p>© 2026 Buyuk Ipak Yo'li Merosi. Barcha huquqlar himoyalangan.</p>
+</footer>
+
+<script>
+// --- SPA ROUTER & NAVIGATION ---
+const pages = document.querySelectorAll('.page');
+const navLinks = document.querySelectorAll('.nav a, .nav-mobile a');
+
+function navTo(pageId) {
+  pages.forEach(p => p.classList.remove('active'));
+  const targetPage = document.getElementById('page-' + pageId);
+  if(targetPage) targetPage.classList.add('active');
+  
+  navLinks.forEach(a => {
+    if(a.getAttribute('data-nav') === pageId) {
+      a.classList.add('active');
+    } else {
+      a.classList.remove('active');
+    }
+  });
+  window.scrollTo({top:0, behavior:'smooth'});
+  document.getElementById('nav-mobile').classList.remove('on');
+  document.getElementById('burger').classList.remove('on');
+}
+
+navLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    const target = link.getAttribute('data-nav');
+    if(target) {
+      e.preventDefault();
+      navTo(target);
+    }
+  });
+});
+
+document.getElementById('burger').addEventListener('click', () => {
+  document.getElementById('burger').classList.toggle('on');
+  document.getElementById('nav-mobile').classList.toggle('on');
+});
+
+// --- THEME TOGGLE ---
+const thBtn = document.getElementById('th');
+thBtn.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+});
+
+// --- PLACES DATA & RENDER ---
+const placesData = [
+  {id:1, city:'Samarqand', title:'Registon Maydoni', desc:'Uchta ulug‘vor madrasa: Ulug‘bek, Sherdor va Tillakori madrasalaridan iborat ansambl.', icon:'🕌', a:'#12304f', b:'#0f8b8d'},
+  {id:2, city:'Samarqand', title:'Shohi Zinda', desc:'Qadimiy maqbaralar ko‘chasi, moviy gumbazlar jilosi bilan mashhur muqaddas maskan.', icon:'✨', a:'#0f8b8d', b:'#d9a441'},
+  {id:3, city:'Samarqand', title:'Go‘ri Amir', desc:'Amir Temur va Temuriylar sulolasi barpo etilgan maqbara.', icon:'👑', a:'#12304f', b:'#d9a441'},
+  {id:4, city:'Buxoro', title:'Minorai Kalon', desc:'XII asrda qurilgan va o‘z vaqtida osmono‘par minora bo‘lgan me’moriy durdona.', icon:'🗼', a:'#d9a441', b:'#b85d19'},
+  {id:5, city:'Buxoro', title:'Labi Hovuz', desc:'Shahar markazidagi hovuz atrofida joylashgan madrasa va xonaqohlar majmuasi.', icon:'🌊', a:'#b85d19', b:'#12304f'},
+  {id:6, city:'Buxoro', title:'Ark Qal’asi', desc:'Buxoro amirlarining qadimiy qasr-qo‘rg‘oni.', icon:'🏰', a:'#d9a441', b:'#0f8b8d'},
+  {id:7, city:'Xiva', title:'Ichan Qal’a', desc:'Ochiq osmon ostidagi muzey, qadimiy shahar qo‘rg‘oni.', icon:'🏜️', a:'#0f8b8d', b:'#12304f'},
+  {id:8, city:'Xiva', title:'Kalta Minor', desc:'Asli to‘liq qurilmagan, ammo naqshlari bilan hayratga soluvchi kalta minora.', icon:'🏛️', a:'#d9a441', b:'#0f8b8d'},
+];
+
+function renderPlaces(data) {
+  const grid = document.getElementById('places-grid');
+  grid.innerHTML = data.map(p => `
+    <div class="card" onclick="showPlaceModal('${p.title.replace(/'/g, "\\'")}', '${p.desc.replace(/'/g, "\\'")}', '${p.icon}', '${p.a}', '${p.b}')">
+      <div class="art" style="--a:${p.a};--b:${p.b}">
+        <span>${p.icon}</span>
+        <em>${p.city}</em>
+      </div>
+      <div class="b">
+        <h3>${p.title}</h3>
+        <p>${p.desc}</p>
+      </div>
+    </div>
+  `).join('');
+}
+renderPlaces(placesData);
+
+function filterPlaces() {
+  const q = document.getElementById('search-place').value.toLowerCase();
+  const filtered = placesData.filter(p => p.title.toLowerCase().includes(q) || p.city.toLowerCase().includes(q));
+  renderPlaces(filtered);
+}
+
+function showPlaceModal(title, desc, icon, a, b) {
+  document.getElementById('m-title').innerText = title;
+  document.getElementById('m-desc').innerText = desc;
+  document.getElementById('m-img').innerText = icon;
+  document.getElementById('m-img').style.setProperty('--a', a);
+  document.getElementById('m-img').style.setProperty('--b', b);
+  document.getElementById('modal').showModal();
+}
+
+function showCityModal(title, desc) {
+  showPlaceModal(title, desc, '📍', '#0f8b8d', '#12304f');
+}
+
+// --- CLIMATE CHART ---
+const climateMonths = ['Yan', 'Fev', 'Mar', 'Apr', 'May', 'Iyun', 'Iyul', 'Avg', 'Sen', 'Okt', 'Noy', 'Dek'];
+const climateTemps = [4, 7, 14, 22, 28, 33, 36, 34, 28, 20, 11, 6];
+
+function renderClimate() {
+  const chart = document.getElementById('climate-chart');
+  chart.innerHTML = climateMonths.map((m, i) => `
+    <div class="cb ${i===4 || i===8 ? 'best':''}" style="--t:${climateTemps[i]}">
+      <b>+${climateTemps[i]}°</b>
+      <i></i>
+      <span>${m}</span>
+    </div>
+  `).join('');
+}
+renderClimate();
+
+// --- PLANNER ---
+let currentSty = 'standart';
+function setSty(sty, btn) {
+  currentSty = sty;
+  document.querySelectorAll('.sty .chip').forEach(c => c.removeAttribute('aria-pressed'));
+  btn.setAttribute('aria-pressed', 'true');
+  updatePlan();
+}
+
+function updatePlan() {
+  const days = document.getElementById('days-range').value;
+  document.getElementById('days-val').innerText = days;
+  const mult = currentSty === 'lux' ? 120 : 90;
+  document.getElementById('total-cost').innerText = '$' + (days * mult);
+
+  const planHTML = [];
+  for(let i=1; i<=days; i++) {
+    let city = i <= Math.ceil(days/3) ? 'Xiva (Ichan Qal’a va muzeylar)' : (i <= Math.ceil(days*2/3) ? 'Buxoro (Labi Hovuz va Minorai Kalon)' : 'Samarqand (Registon va Shohi Zinda)');
+    planHTML.push(`
+      <div class="day">
+        <h3>${i}-kun: ${city}</h3>
+        <div>Ekskursiya, milliy taomlar tatib ko'rish va tarixiy obidalarni ziyorat qilish.</div>
+      </div>
+    `);
+  }
+  document.getElementById('plan-days').innerHTML = planHTML.join('');
+}
+updatePlan();
+
+// --- QUIZ ---
+const quizData = [
+  {q: "Registon maydoni qaysi shaharda joylashgan?", opts: ["Xiva", "Samarqand", "Buxoro", "Toshkent"], ans: 1},
+  {q: "Ichan Qal’a majmuasi qaysi shahar ichida joylashgan?", opts: ["Xiva", "Samarqand", "Buxoro", "Navoiy"], ans: 0},
+  {q: "Minorai Kalon qaysi asrda barpo etilgan?", opts: ["X asr", "XII asr", "XIV asr", "XVI asr"], ans: 1}
+];
+let currentQ = 0, score = 0;
+
+function renderQuiz() {
+  if(currentQ >= quizData.length) {
+    document.getElementById('quiz-title').innerText = "Tabriklaymiz!";
+    document.getElementById('quiz-q').innerText = `Siz testni yakunladingiz! To'g'ri javoblar: ${score} / ${quizData.length}`;
+    document.getElementById('quiz-opts').innerHTML = `<button class="chip" onclick="currentQ=0;score=0;renderQuiz()" style="text-align:center;background:var(--teal);color:#fff">Qaytadan boshlash</button>`;
+    return;
+  }
+  const q = quizData[currentQ];
+  document.getElementById('quiz-title').innerText = `Test (${currentQ+1}/${quizData.length})`;
+  document.getElementById('quiz-q').innerText = q.q;
+  document.getElementById('quiz-opts').innerHTML = q.opts.map((o, idx) => `
+    <button onclick="checkQuiz(${idx})">${o}</button>
+  `).join('');
+}
+renderQuiz();
+
+function checkQuiz(idx) {
+  if(idx === quizData[currentQ].ans) score++;
+  currentQ++;
+  renderQuiz();
+}
+
+// --- WORDS & SPEECH ---
+const wordsData = [
+  {uz: "Assalomu alaykum", ru: "Здравствуйте", en: "Hello"},
+  {uz: "Rahmat", ru: "Спасибо", en: "Thank you"},
+  {uz: "Non", ru: "Лепешка", en: "Bread"},
+  {uz: "Osh", ru: "Плов", en: "Plov (Pilaf)"},
+  {uz: "Xush kelibsiz", ru: "Добро пожаловать", en: "Welcome"},
+  {uz: "Suv", ru: "Вода", en: "Water"}
+];
+
+function renderWords() {
+  document.getElementById('words-grid').innerHTML = wordsData.map(w => `
+    <div class="wd" onclick="speakWord('${w.uz}')">
+      <b>${w.uz}</b>
+      <small>${w.ru} • ${w.en}</small>
+    </div>
+  `).join('');
+}
+renderWords();
+
+function speakWord(text) {
+  if('speechSynthesis' in window) {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'uz-UZ';
+    window.speechSynthesis.speak(utterance);
+    showToast(`Ovozli talaffuz: "${text}"`);
+  } else {
+    showToast(`So'z: ${text}`);
+  }
+}
+
+function showToast(msg) {
+  const ts = document.getElementById('ts');
+  ts.innerText = msg;
+  ts.classList.add('on');
+  setTimeout(() => ts.classList.remove('on'), 2000);
+}
+
+// --- AI CHAT SYSTEM ---
+function toggleChat() {
+  const box = document.getElementById('chat-box');
+  box.hidden = !box.hidden;
+}
+
+function sendQuick(text) {
+  document.getElementById('chat-input').value = text;
+  sendChat();
+}
+
+function sendChat() {
+  const input = document.getElementById('chat-input');
+  const txt = input.value.trim();
+  if(!txt) return;
+
+  const msgs = document.getElementById('chat-msgs');
+  msgs.innerHTML += `<div class="m u">${txt}</div>`;
+  input.value = '';
+  msgs.scrollTop = msgs.scrollHeight;
+
+  setTimeout(() => {
+    let reply = "Ajoyib savol! Ipak yo'li bo'ylab sayohat qilish har doim unutilmas taassurot qoldiradi. Samarqand va Buxoroga bahor yoki kuz oylarida tashrif buyurish eng maqbul vaqtdir.";
+    
+    const lower = txt.toLowerCase();
+    if(lower.includes('registon') || lower.includes('samarqand')) {
+      reply = "Samarqanddagi Registon maydoni uchta madrasadan iborat: Ulug‘bek, Sherdor va Tillakori. Bu yerda har kecha yorug'lik va musiqa shousi bo'lib o'tadi!";
+    } else if(lower.includes('buxoro') || lower.includes('kalon')) {
+      reply = "Buxoro shahrida Minorai Kalon, Ark qal’asi va Labi Hovuz ansamblini albatta ko'rishingiz kerak. Milliy doʻppilar va zargarlik buyumlari ham mashhur.";
+    } else if(lower.includes('xiva') || lower.includes('ichan')) {
+      reply = "Xivadagi Ichan Qal’a – UNESCO Jahon merosi ro'yxatiga kiritilgan yopiq qadimiy shahar. Kalta Minor va Toshhovuz saroyi diqqatga sazovor.";
+    } else if(lower.includes('taom') || lower.includes('osh')) {
+      reply = "O'zbek milliy taomlaridan Samarqand oshi, Buxoro oshi, shuningdek somsa, manti va shashlikni tatib ko'rishingiz shart!";
+    } else if(lower.includes('vaqt') || lower.includes('qachon')) {
+      reply = "Sayohat qilish uchun eng qulay oylar: mart-may va sentabr-noyabr oylari. Ob-havo juda yoqimli bo'ladi.";
+    }
+
+    msgs.innerHTML += `<div class="m a">${reply}</div>`;
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 600);
+}
+
+// --- MAP FILTER (Tuzatilgan: event o'rniga data-city ishlatiladi) ---
+document.querySelectorAll('#map-controls .chip').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const city = this.getAttribute('data-city');
+    document.querySelectorAll('#map-controls .chip').forEach(c => c.removeAttribute('aria-pressed'));
+    this.setAttribute('aria-pressed', 'true');
+    showToast(city === 'all' ? "Barcha shaharlar ko'rsatilmoqda" : `${city.toUpperCase()} shahri tanlandi`);
+  });
+});
+
+// --- LANGUAGE SWITCHER (oddiy ko'rinish) ---
+document.querySelectorAll('.lang button').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const lang = this.getAttribute('data-l');
+    document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', 'false'));
+    document.querySelectorAll(`.lang button[data-l="${lang}"]`).forEach(b => b.setAttribute('aria-pressed', 'true'));
+    showToast(`Til tanlandi: ${lang.toUpperCase()}`);
+  });
+});
+</script>
+</body>
+</html>
